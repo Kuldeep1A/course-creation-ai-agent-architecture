@@ -38,9 +38,7 @@ playground:
 run-local:
 	./run_locally.sh
 
-# Run the distributed system using Docker Compose
-run-docker:
-	docker-compose up --build
+
 
 # ==============================================================================
 # Backend Deployment Targets

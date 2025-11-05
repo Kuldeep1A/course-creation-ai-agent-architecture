@@ -28,33 +28,36 @@ course-creation-agent/
 ├── content_builder/     # Content Builder microservice
 │   ├── app/
 │   └── Dockerfile
-├── docker-compose.yml   # For running the distributed system locally
 ├── Makefile             # Command shortcuts
 └── ...
 ```
 
 ## Requirements
 
-*   **Docker & Docker Compose**: For running the distributed system.
+*   **uv**: Python package manager (required for local development).
 *   **Google Cloud SDK**: For GCP services and authentication.
-*   **uv**: Python package manager (optional, for local non-docker dev).
 
-## Quick Start (Distributed)
+## Quick Start
 
-1.  **Set up credentials:**
-    Ensure you have Google Cloud credentials available to Docker. You might need to run:
+1.  **Install Dependencies:**
+    ```bash
+    make install
+    ```
+
+2.  **Set up credentials:**
+    Ensure you have Google Cloud credentials available. You might need to run:
     ```bash
     gcloud auth application-default login
     ```
     And ensure your `GOOGLE_CLOUD_PROJECT` and `GOOGLE_API_KEY` (if using Gemini API) environment variables are set.
 
-2.  **Run with Docker Compose:**
+3.  **Run Locally:**
     ```bash
-    make run-distributed
+    make run-local
     ```
-    This will build all 4 images and start them.
+    This will start all 4 agents in background processes.
 
-3.  **Access the App:**
+4.  **Access the App:**
     Open **http://localhost:8000** in your browser.
 
 ## Deployment
