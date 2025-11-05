@@ -1,0 +1,50 @@
+version: "3.9"
+services:
+  orchestrator:
+    build: ./orchestrator
+    ports:
+      - "8000:8000"
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - GOOGLE_CLOUD_PROJECT=${GOOGLE_CLOUD_PROJECT}
+      - GOOGLE_GENAI_USE_VERTEXAI=${GOOGLE_GENAI_USE_VERTEXAI:-True}
+      # APP_URL for orchestrator is what the browser sees, so localhost:8000
+      - APP_URL=http://localhost:8000
+      # Internal URLs for A2A communication within Docker network
+      - RESEARCHER_AGENT_CARD_URL=http://researcher:8000/a2a/researcher_app/.well-known/agent.json
+      - JUDGE_AGENT_CARD_URL=http://judge:8000/a2a/judge_app/.well-known/agent.json
+      - CONTENT_BUILDER_AGENT_CARD_URL=http://content_builder:8000/a2a/content_builder_app/.well-known/agent.json
+    depends_on:
+      - researcher
+      - judge
+      - content_builder
+
+  researcher:
+    build: ./researcher
+    ports:
+      - "8001:8000"
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - GOOGLE_CLOUD_PROJECT=${GOOGLE_CLOUD_PROJECT}
+      - GOOGLE_GENAI_USE_VERTEXAI=${GOOGLE_GENAI_USE_VERTEXAI:-True}
+      - APP_URL=http://researcher:8000
+
+  judge:
+    build: ./judge
+    ports:
+      - "8002:8000"
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - GOOGLE_CLOUD_PROJECT=${GOOGLE_CLOUD_PROJECT}
+      - GOOGLE_GENAI_USE_VERTEXAI=${GOOGLE_GENAI_USE_VERTEXAI:-True}
+      - APP_URL=http://judge:8000
+
+  content_builder:
+    build: ./content_builder
+    ports:
+      - "8003:8000"
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - GOOGLE_CLOUD_PROJECT=${GOOGLE_CLOUD_PROJECT}
+      - GOOGLE_GENAI_USE_VERTEXAI=${GOOGLE_GENAI_USE_VERTEXAI:-True}
+      - APP_URL=http://content_builder:8000

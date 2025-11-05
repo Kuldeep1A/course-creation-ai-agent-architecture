@@ -1,0 +1,32 @@
+I am looking to create 5 youtube videos to explain to people how to work with Google's ADK, but in a more advanced way. 
+
+Right now, all the tutorials we have online are showing how to build agent systems with ADK, but interacting with the agent system through ADK Web.
+
+ADK web is great for testing, but most production systems have their own frontend, which they'd like to use to integrate and call their ADK agent.
+
+Using web search for Google Agent Development Kit (ADK) and the @llms-full.txt file, 
+create 5 youtube video scripts to teach people how to build this type of flow. We can use a common example of a "course creation" agent flow
+where the agent system will be able to create a new curated course for us based on the prompt we type (e.g., I want to learn about linear algebra, i'm a beginner).
+
+To do this, we want to build a very basic frontend using something like React/Vite, which has a chat box for the user to interact with.
+
+Then when they enter the prompt, the frontend will pass that request to the agent syste, which will be comprised of several ADK agents speaking to each other.
+The ADK agents will curate research, refine, judge each other, and build the content before sending it back to the frontend.
+
+To accomplish this, we want a few things.
+
+1. A sample frontend. The code for this is not so important, it just needs to b e there to illustrate how to connect to an ADK system on the backend.
+2. The code for the ADK agent systems.
+3. The code and deployment instructions for putting the agents on the cloud.
+4. The code to integrate the ADK agent system into the frontend.
+
+
+Using these resources, I want you to then create 5, 5-7 minute long YouTube video scripts. 
+
+Each script should have two columns. On the left, it should be the text that the YouTuber will read. On the right, it'll be proposed visual elements (e.g., architecture diagrams, code snippets, etc.)
+If there's any assets that need to be generated (e.g., images of architectures, examples), make sure there's a corresponding prompt I can use to feed into an AI to generate the image.
+
+Each YouTube video should start with a catchy, yet succinct and relatable intro. The script should be technically sound, professional, but approachable and friendly.
+There should be an overview at the beginning of the video and a summary at the end.
+There should be simple outros that lead into the next video.
+
