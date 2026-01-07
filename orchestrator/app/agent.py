@@ -15,11 +15,19 @@ from google.adk.agents.remote_a2a_agent import RemoteA2aAgent
 from google.adk.agents.callback_context import CallbackContext
 
 # --- Configuration ---
-_, project_id = google.auth.default()
-os.environ.setdefault("GOOGLE_CLOUD_PROJECT", project_id)
-os.environ.setdefault("GOOGLE_CLOUD_LOCATION", "us-central1")
-# Default to False for local dev if not set by environment
-os.environ.setdefault("GOOGLE_GENAI_USE_VERTEXAI", "False")
+# Use default project from credentials if not in .env
+try:
+    _, project_id = google.auth.default()
+    os.environ.setdefault("GOOGLE_CLOUD_PROJECT", project_id)
+except Exception:
+    # If no credentials available, continue without setting project
+    pass
+
+os.environ.setdefault("GOOGLE_CLOUD_LOCATION", "europe-west1")
+os.environ.setdefault("GOOGLE_GENAI_USE_VERTEXAI", "True")
+
+# Orchestrator doesn't use a model directly, but we set up the env
+
 
 # --- Callbacks ---
 def create_save_output_callback(key: str):

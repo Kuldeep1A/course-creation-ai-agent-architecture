@@ -31,7 +31,7 @@ We will deploy the standalone agents first.
    ```
    *Copy the Service URL from the output (e.g., `https://researcher-xyz.a.run.app`).*
 
-2. **Configure APP_URL:**
+2. **Configure environment variables:**
    ```bash
    gcloud run services update researcher \
        --region us-central1 \
